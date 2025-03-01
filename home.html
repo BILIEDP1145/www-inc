@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千年半导体-致力于创新</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f5f5;
+            min-height: 100vh;
+            overflow-y: scroll;
+        }
+
+        /* 动态Logo容器 */
+        .logo-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1;
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            background: url('http://inc.millenniumic.us.kg/inclogo.png') center/contain no-repeat;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.1));
+        }
+
+        /* 按钮容器 */
+        .menu-container {
+            position: relative;
+            min-height: 150vh; /* 创造滚动空间 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        /* 动态按钮样式 */
+        .menu-btn {
+            width: 240px;
+            padding: 18px 40px;
+            background: rgba(255,255,255,0.98);
+            color: #333;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .menu-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo容器 -->
+    <div class="logo-wrapper">
+        <div class="logo"></div>
+    </div>
+
+    <!-- 导航菜单 -->
+    <div class="menu-container">
+        <button class="menu-btn">产品</button>
+        <button class="menu-btn">支持</button>
+        <button class="menu-btn">介绍</button>
+        <button class="menu-btn">隐私政策</button>
+    </div>
+
+    <script>
+        // 滚动渐变逻辑
+        window.addEventListener('scroll', () => {
+            const logo = document.querySelector('.logo-wrapper');
+            const scrollPosition = window.pageYOffset;
+            
+            // 动态参数计算
+            const fadeThreshold = 200; // 完全消失的滚动距离
+            const scaleFactor = 0.8;  // 最小缩放比例
+            
+            // 计算透明度（0-1范围）
+            const opacity = 1 - Math.min(scrollPosition / fadeThreshold, 1);
+            
+            // 计算缩放比例（1到0.8范围）
+            const scale = 1 - (0.2 * Math.min(scrollPosition / fadeThreshold, 1));
+            
+            // 应用动态样式
+            logo.style.opacity = opacity;
+            logo.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        });
+
+        // 初始化设置
+        window.addEventListener('load', () => {
+            // 确保页面可滚动
+            document.body.style.height = 
+                document.documentElement.scrollHeight + 'px';
+            
+            // 预加载Logo图片
+            const img = new Image();
+            img.src = 'http://inc.millenniumic.us.kg/inclogo.png';
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>    </title>
+    <style>
+        /* 基本样式 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 150vh; /* 让页面足够长以便测试滚动 */
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            position: fixed;
+            bottom: -100%; /* 初始隐藏在屏幕下方 */
+            left: 0;
+            width: 100%;
+            transition: bottom 0.5s ease-in-out; /* 添加动画效果 */
+        }
+
+        footer.visible {
+            bottom: 0; /* 显示在屏幕底部 */
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content img {
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .footer-content p {
+            margin: 0;
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .footer-content a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div style="padding: 20px;">
+    </div>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <img src="Millenniumic.png" alt="Millenniumic千年半导体">
+            <p>© 2025 Millenniumic. All rights reserved.</p>
+            <a href="https://space.bilibili.com/1249347678?spm_id_from=333.1007.0.0" target="_blank">Bilibili</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms-of-service">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        // 监听滚动事件
+        window.addEventListener('scroll', function() {
+            const footer = document.getElementById('footer');
+            const scrollPosition = window.innerHeight + window.scrollY;
+            const pageHeight = document.documentElement.scrollHeight;
+
+            // 如果滚动到底部，显示页脚
+            if (scrollPosition >= pageHeight - 50) { // 50 是一个缓冲值
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品中心 - 横向布局</title>
+    <style>
+        /* 保留原有基础样式... */
+
+        /* 修改按钮容器为横向排列 */
+        .menu-container {
+            min-height: 150vh;
+            display: flex;
+            flex-wrap: wrap; /* 允许换行 */
+            justify-content: center;
+            align-items: center;
+            gap: 30px; /* 按钮间距 */
+            padding: 40px;
+            z-index: 2;
+        }
+
+        .menu-btn {
+            width: auto; /* 改为自适应宽度 */
+            min-width: 160px; /* 最小宽度 */
+            padding: 16px 35px;
+            border-radius: 40px;
+            /* 其他样式保持不变... */
+        }
+
+        /* 大屏幕横向排列 */
+        @media (min-width: 768px) {
+            .menu-container {
+                flex-direction: row;
+            }
+            
+            .menu-btn {
+                transform: translateY(50px); /* 初始位置下移 */
+                opacity: 0; /* 初始透明 */
+                animation: buttonAppear 0.6s ease forwards;
+            }
+
+            @keyframes buttonAppear {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* 为每个按钮添加延迟动画 */
+            .menu-btn:nth-child(1) { animation-delay: 0.2s; }
+            .menu-btn:nth-child(2) { animation-delay: 0.4s; }
+            .menu-btn:nth-child(3) { animation-delay: 0.6s; }
+            .menu-btn:nth-child(4) { animation-delay: 0.8s; }
+        }
+
+        /* 移动端垂直排列 */
+        @media (max-width: 767px) {
+            .menu-container {
+                flex-direction: column;
+            }
+            
+            .menu-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 保持原有结构不变... -->
+
+    <script>
+        // 修改后的初始化脚本
+        window.addEventListener('load', () => {
+            // 添加视差滚动效果
+            const buttons = document.querySelectorAll('.menu-btn');
+            
+            window.addEventListener('scroll', () => {
+                const scrollY = window.pageYOffset;
+                
+                // 按钮视差效果
+                buttons.forEach((btn, index) => {
+                    const speed = 0.3 + (index * 0.1);
+                    btn.style.transform = `translateY(${scrollY * speed}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
