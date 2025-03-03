@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千年半导体 INC</title>
+    <style>
+        :root {
+            --primary-color: #e3f2fd;
+            --secondary-color: #1976d2;
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('https://inc-pic-use.millenniumic.cn/webtable.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Microsoft YaHei', sans-serif;
+            transition: all 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .theme-btn, .music-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .main-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 100px;
+            opacity: 0;
+            animation: slideUp 1s forwards;
+        }
+
+        .product-btn {
+            padding: 1.5rem 3rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .product-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 2000;
+            animation: fadeOut 1.2s forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(100px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        /* 暗夜模式样式 */
+        .dark-mode nav {
+            background-color: #333 !important;
+        }
+
+        .dark-mode .theme-btn,
+        .dark-mode .music-btn,
+        .dark-mode .product-btn {
+            background-color: #666 !important;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="https://inc-pic-use.millenniumic.cn/Millenniumic.png" class="logo" alt="Logo">
+        <div class="nav-buttons">
+            <button class="theme-btn" onclick="toggleTheme()">🌓 主题</button>
+            <button class="music-btn" onclick="toggleMusic()">🎵 音乐</button>
+        </div>
+    </nav>
+
+    <div class="alert-box">
+        <h3>官网仅针对横屏和电脑端做了适配</h3>
+        <p>为保障您的浏览体验，请横屏，感谢您的支持</p>
+        <p style="margin-top: 1rem;">---千年半导体 INC</p>
+    </div>
+
+    <div class="main-buttons">
+        <button class="product-btn" onclick="window.open('https://hardware.millenniumic.cn/table.html')">产品</button>
+        <button class="product-btn" onclick="window.open('https://div.millenniumic.cn/table.html')">驱动程序</button>
+        <button class="product-btn" onclick="window.open('https://ourname.millenniumic.cn/name.html')">我们</button>
+        <button class="product-btn" onclick="window.open('http://SN-ASK.millenniumic.cn/SN.html')">SN查询</button>
+        <button class="product-btn" onclick="window.open('https://webupdata.millenniumic.cn/data.html')">更新日志</button>
+    </div>
+
+    <audio id="bgm" src="https://web-inc-bgm.millenniumic.cn/TimeStop.mp4"></audio>
+
+    <script>
+        // 主题切换功能
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // 音乐控制功能
+        const bgm = document.getElementById('bgm');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if(isPlaying) {
+                bgm.pause();
+            } else {
+                bgm.play();
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // 自动关闭提示框
+        setTimeout(() => {
+            document.querySelector('.alert-box').style.display = 'none';
+        }, 1200);
+    </script>
+</body>
+</html>
