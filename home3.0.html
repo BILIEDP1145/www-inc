@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<style>
+    /* 新增背景优化 */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://inc-pic-use.millenniumic.cn/webtable.png') center/cover;
+        z-index: -1;
+    }
+    
+    /* 覆盖原body背景设置 */
+    body {
+        background: transparent !important;
+    }
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>千年半导体 INC</title>
