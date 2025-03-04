@@ -189,3 +189,92 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <style>
+        /* 基本样式 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 150vh; /* 让页面足够长以便测试滚动 */
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            position: fixed;
+            bottom: -100%; /* 初始隐藏在屏幕下方 */
+            left: 0;
+            width: 100%;
+            transition: bottom 0.5s ease-in-out; /* 添加动画效果 */
+        }
+
+        footer.visible {
+            bottom: 0; /* 显示在屏幕底部 */
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content img {
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .footer-content p {
+            margin: 0;
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .footer-content a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div style="padding: 20px;">
+    </div>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <img src="https://inc-pic-use.millenniumic.cn/Millenniumic.png" alt="Millenniumic千年半导体">
+            <p>© 2025 Millenniumic. All rights reserved.</p>
+            <a href="https://space.bilibili.com/1249347678?spm_id_from=333.1007.0.0" target="_blank">Bilibili</a>
+            <a href="https://www.millenniumic.cn">官网</a>
+            <a href="https://hardware.millenniumic.cn/table.html">技术支持</a>
+        </div>
+    </footer>
+
+    <script>
+        // 监听滚动事件
+        window.addEventListener('scroll', function() {
+            const footer = document.getElementById('footer');
+            const scrollPosition = window.innerHeight + window.scrollY;
+            const pageHeight = document.documentElement.scrollHeight;
+
+            // 如果滚动到底部，显示页脚
+            if (scrollPosition >= pageHeight - 50) { // 50 是一个缓冲值
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
+
