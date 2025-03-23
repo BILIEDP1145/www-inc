@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>小无名生日快乐！</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 50px;
+            position: relative;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3em;
+            text-shadow: 3px 3px 0 #ff4757;
+            animation: bounce 2s infinite;
+        }
+
+        .cake {
+            width: 200px;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            display: none;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 80px;
+            animation: float 6s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        .hearts {
+            position: fixed;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            animation: heartFloat 3s linear;
+        }
+
+        @keyframes heartFloat {
+            to {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 小无名生日快乐！ 🎉</h1>
+        
+        <img src="https://img.icons8.com/clouds/200/000000/birthday-cake.png" 
+             class="cake" 
+             alt="生日蛋糕"
+             onclick="showMessage()">
+
+        <div class="message" id="birthdayMessage">
+            <h2>亲爱的无名大佬：</h2>
+            <p>愿你的代码永无bug！<br>
+               愿你的需求永不延期！<br>
+               愿你新的一岁心想事成！<br>
+               🎂 Happy Birthday！ 🎂</p>
+        </div>
+
+        <!-- 气球 -->
+        <img src="https://img.icons8.com/color/96/000000/balloon--v1.png" 
+             class="balloon" 
+             style="left: 10%; animation-delay: 0.5s">
+        <!-- 可以复制更多气球 -->
+    </div>
+
+    <script>
+        function showMessage() {
+            const message = document.getElementById('birthdayMessage');
+            message.style.display = 'block';
+            
+            // 撒爱心效果
+            for(let i = 0; i < 20; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 95 + '%';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        // 自动生成气球
+        window.onload = function() {
+            const colors = ['#ff9ff3', '#feca57', '#ff6b6b', '#48dbfb'];
+            for(let i = 0; i < 8; i++) {
+                const balloon = document.createElement('img');
+                balloon.src = `https://img.icons8.com/color/96/000000/balloon--v1.png`;
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 90 + '%';
+                balloon.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(balloon);
+            }
+        }
+    </script>
+</body>
+</html>
